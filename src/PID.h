@@ -30,6 +30,9 @@ class PID {
    * @output The total PID error
    */
   double TotalError();
+  
+  double AvgError(); 
+  
 
  private:
   /**
@@ -45,6 +48,15 @@ class PID {
   double Kp;
   double Ki;
   double Kd;
+
+  /**
+   * Additional variables
+   */
+  double cte_pre;
+  long steps;
+  double error_tot;
+  
+  
 };
 
 #endif  // PID_H
