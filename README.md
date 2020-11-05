@@ -64,35 +64,32 @@ for instructions and the project rubric.
 * You don't have to follow this directory structure, but if you do, your work
   will span all of the .cpp files here. Keep an eye out for TODOs.
 
-## Call for IDE Profiles Pull Requests
+## Reflection
 
-Help your fellow students!
+1. Effect of each component of PID controller
 
-We decided to create Makefiles with cmake to keep this project as platform
-agnostic as possible. Similarly, we omitted IDE profiles in order to we ensure
-that students don't feel pressured to use one IDE or another.
+Proportional parameter: 
+* This parameter effects the contol output in proportion to the error. Increasing this parameter gain increases the control signal in proportiona to the error. A lone P controller exhibits marginally stable behavior. 
+* A lone P controller for steering control initially started off smoothly exhibiting stable behavior. However, with every passing moment its amplitude of oscillations increased, making the vehicle unstable.
 
-However! I'd love to help people get up and running with their IDEs of choice.
-If you've created a profile for an IDE that you think other students would
-appreciate, we'd love to have you add the requisite profile files and
-instructions to ide_profiles/. For example if you wanted to add a VS Code
-profile, you'd add:
+Differential paramter: 
+* This parameter effects the control input by keeping rate of change of error in check. It is often deployed in tandem with Proportional paramter for eliminating the latter's oscilatary behavior. It is often used to eliminate overshoots as a dampening solution.
+* A well tuned PD steering controller proved sufficient for stably completing the course. The D parameter eliminated the increase in amplitude of oscilations by keeping the rate of change of error in check.
 
-* /ide_profiles/vscode/.vscode
-* /ide_profiles/vscode/README.md
+Integral paramter:
+* This parameter effects the control input by keeping accumulating errors in check. It is most often deployed to eliminate steady-state error by countering system biases being built over a period of time. 
+* The effect of adding an I paramter to a PD controller is very subtle and in this case almost unnecessary. With the absence of accumulating biases, the I gain was kept very small inorder not to interfere with a stable PD controller. A large I gain resulted introducing an unecessary bias which resulted in deviation of vehicle from lane center.
 
-The README should explain what the profile does, how to take advantage of it,
-and how to install it.
-
-Frankly, I've never been involved in a project with multiple IDE profiles
-before. I believe the best way to handle this would be to keep them out of the
-repo root to avoid clutter. My expectation is that most profiles will include
-instructions to copy files to a new location to get picked up by the IDE, but
-that's just a guess.
-
-One last note here: regardless of the IDE used, every submitted project must
-still be compilable with cmake and make./
-
-## How to write a README
-A well written README file can enhance your project and portfolio.  Develop your abilities to create professional README files by completing [this free course](https://www.udacity.com/course/writing-readmes--ud777).
-
+2. Hyperparameter tuning method
+I took the approach of manual tuning as it seemed sufficient and also provides the opportunity to understand each parameter in isolation. The following approach worked best for me:
+	* Initially, set all gains to zero.
+    * Increase only P until the vehicle starts to exhibit marginally stable behabior.
+    * Increase only D until the vehicle oscillations reduce to a stable behavior.
+    * Repeat steps 2 and 3 until satisfactory behavior is achieved.
+    * Increase only I gain only if necessary, else keep it as low as possible.
+    
+My steering controller gains are:
+* Kp = 0.1
+* Kd = 1.0
+* Ki = 0.00001
+These gains resulted in an average error value of less than 0.5.
