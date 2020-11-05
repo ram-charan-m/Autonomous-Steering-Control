@@ -59,26 +59,21 @@ More information is only accessible by people who are already enrolled in Term 2
 of CarND. If you are enrolled, see [the project page](https://classroom.udacity.com/nanodegrees/nd013/parts/40f38239-66b6-46ec-ae68-03afd8a601c8/modules/f1820894-8322-4bb3-81aa-b26b3c6dcbaf/lessons/e8235395-22dd-4b87-88e0-d108c5e5bbf4/concepts/6a4d8d42-6a04-4aa6-b284-1697c0fd6562)
 for instructions and the project rubric.
 
-## Hints!
-
-* You don't have to follow this directory structure, but if you do, your work
-  will span all of the .cpp files here. Keep an eye out for TODOs.
-
 ## Reflection
 
 ### Effect of each component of PID controller
 
 1. Proportional parameter: 
-  * This parameter effects the contol output in proportion to the error. Increasing this parameter gain increases the control signal in proportiona to the error. A lone P controller exhibits marginally stable behavior. 
-  * A lone P controller for steering control initially started off smoothly exhibiting stable behavior. However, with every passing moment its amplitude of oscillations increased, making the vehicle unstable.
+	* This parameter effects the contol output in proportion to the error. Increasing this parameter gain increases the control signal in proportiona to the error. A lone P controller exhibits marginally stable behavior. 
+    * A lone P controller for steering control initially started off smoothly exhibiting stable behavior. However, with every passing moment its amplitude of oscillations increased, making the vehicle unstable.
 
 2. Differential paramter: 
-  * This parameter effects the control input by keeping rate of change of error in check. It is often deployed in tandem with Proportional paramter for eliminating the latter's oscilatary behavior. It is often used to eliminate overshoots as a dampening solution.
-  * A well tuned PD steering controller proved sufficient for stably completing the course. The D parameter eliminated the increase in amplitude of oscilations by keeping the rate of change of error in check.
+	* This parameter effects the control input by keeping rate of change of error in check. It is often deployed in tandem with Proportional paramter for eliminating the latter's oscilatary behavior. It is often used to eliminate overshoots as a dampening solution.
+    * A well tuned PD steering controller proved sufficient for stably completing the course. The D parameter eliminated the increase in amplitude of oscilations by keeping the rate of change of error in check.
 
 3. Integral paramter:
-  * This parameter effects the control input by keeping accumulating errors in check. It is most often deployed to eliminate steady-state error by countering system biases being built over a period of time. 
-  * The effect of adding an I paramter to a PD controller is very subtle and in this case almost unnecessary. With the absence of accumulating biases, the I gain was kept very small inorder not to interfere with a stable PD controller. A large I gain resulted introducing an unecessary bias which resulted in deviation of vehicle from lane center.
+	* This parameter effects the control input by keeping accumulating errors in check. It is most often deployed to eliminate steady-state error by countering system biases being built over a period of time. 
+    * The effect of adding an I paramter to a PD controller is very subtle and in this case almost unnecessary. With the absence of accumulating biases, the I gain was kept very small inorder not to interfere with a stable PD controller. A large I gain resulted introducing an unecessary bias which resulted in deviation of vehicle from lane center.
 
 ### Hyperparameter tuning method
 I took the approach of manual tuning as it seemed sufficient and also provides the opportunity to understand each parameter in isolation. The following approach worked best for me:
