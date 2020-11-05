@@ -66,27 +66,27 @@ for instructions and the project rubric.
 
 ## Reflection
 
-1. Effect of each component of PID controller
+### Effect of each component of PID controller
 
-Proportional parameter: 
-* This parameter effects the contol output in proportion to the error. Increasing this parameter gain increases the control signal in proportiona to the error. A lone P controller exhibits marginally stable behavior. 
-* A lone P controller for steering control initially started off smoothly exhibiting stable behavior. However, with every passing moment its amplitude of oscillations increased, making the vehicle unstable.
+1. Proportional parameter: 
+  * This parameter effects the contol output in proportion to the error. Increasing this parameter gain increases the control signal in proportiona to the error. A lone P controller exhibits marginally stable behavior. 
+  * A lone P controller for steering control initially started off smoothly exhibiting stable behavior. However, with every passing moment its amplitude of oscillations increased, making the vehicle unstable.
 
-Differential paramter: 
-* This parameter effects the control input by keeping rate of change of error in check. It is often deployed in tandem with Proportional paramter for eliminating the latter's oscilatary behavior. It is often used to eliminate overshoots as a dampening solution.
-* A well tuned PD steering controller proved sufficient for stably completing the course. The D parameter eliminated the increase in amplitude of oscilations by keeping the rate of change of error in check.
+2. Differential paramter: 
+  * This parameter effects the control input by keeping rate of change of error in check. It is often deployed in tandem with Proportional paramter for eliminating the latter's oscilatary behavior. It is often used to eliminate overshoots as a dampening solution.
+  * A well tuned PD steering controller proved sufficient for stably completing the course. The D parameter eliminated the increase in amplitude of oscilations by keeping the rate of change of error in check.
 
-Integral paramter:
-* This parameter effects the control input by keeping accumulating errors in check. It is most often deployed to eliminate steady-state error by countering system biases being built over a period of time. 
-* The effect of adding an I paramter to a PD controller is very subtle and in this case almost unnecessary. With the absence of accumulating biases, the I gain was kept very small inorder not to interfere with a stable PD controller. A large I gain resulted introducing an unecessary bias which resulted in deviation of vehicle from lane center.
+3. Integral paramter:
+  * This parameter effects the control input by keeping accumulating errors in check. It is most often deployed to eliminate steady-state error by countering system biases being built over a period of time. 
+  * The effect of adding an I paramter to a PD controller is very subtle and in this case almost unnecessary. With the absence of accumulating biases, the I gain was kept very small inorder not to interfere with a stable PD controller. A large I gain resulted introducing an unecessary bias which resulted in deviation of vehicle from lane center.
 
-2. Hyperparameter tuning method
+### Hyperparameter tuning method
 I took the approach of manual tuning as it seemed sufficient and also provides the opportunity to understand each parameter in isolation. The following approach worked best for me:
-	* Initially, set all gains to zero.
-    * Increase only P until the vehicle starts to exhibit marginally stable behabior.
-    * Increase only D until the vehicle oscillations reduce to a stable behavior.
-    * Repeat steps 2 and 3 until satisfactory behavior is achieved.
-    * Increase only I gain only if necessary, else keep it as low as possible.
+* Initially, set all gains to zero.
+* Increase only P until the vehicle starts to exhibit marginally stable behabior.
+* Increase only D until the vehicle oscillations reduce to a stable behavior.
+* Repeat steps 2 and 3 until satisfactory behavior is achieved.
+* Increase only I gain only if necessary, else keep it as low as possible.
     
 My steering controller gains are:
 * Kp = 0.1
